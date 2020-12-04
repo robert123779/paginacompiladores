@@ -1,0 +1,200 @@
+#include <stdio.h>
+#include <conio.h>
+#include <cstdlib>
+#include "iostream"
+
+using namespace std;
+int edad;
+
+struct datos{
+	
+	char nombre[30];
+	int edad;
+	char electrodomestico[30];
+	int precio;
+	char credito[30];
+	int meses;
+	int pago;
+};
+
+
+
+typedef struct datos DATO;
+
+char menu();
+void insertar();
+void mostrar();
+void lista_productos();
+void verificacion();
+
+int main (void){
+	char op;
+	
+	do{
+		op=menu();
+		switch(op){
+			case '1':
+			system("cls");
+			insertar();
+			
+			
+			break;
+			case '2':
+				system("cls");
+				mostrar();
+				break;
+							break;
+			case '3':
+				system("cls");
+				lista_productos();
+				break;
+			case '4':
+				system("cls");
+				verificacion();
+				break;
+		}
+		
+	}while(op!='5');
+	return 0;
+}
+
+char menu(){
+	char op;
+	system("cls");
+	printf("\n * *TIENDA DE ELECTRODOMESTICOS CONFISCOM_SISTEMA DE APARTADO * *");
+	printf("\n  -------------------------------------------");
+	printf("\n (1) REGISTRO_CLIENTE :");
+	printf("\n (2) MOSTRAR REGISTRO :");
+	printf("\n (3) LISTA_PRODUCTOS :");
+	printf("\n (4) VERIFICACION :");
+	printf("\n (5) SALIR :");
+	printf("\n OPCION ---> "); fflush(stdin);
+	op=getch();
+	return op;
+	
+}
+
+
+void insertar(){
+	FILE *fich;
+	DATO e;
+	
+{
+
+
+cout << "Que edad tienes: ";
+cin >> edad;
+
+if (edad > 17) {
+	cout << "Si eres apto para otorgarte un credito, presione el numero  1 para continuar";
+    
+} else {
+    
+    cout << "No eres apto para un credito_presione cualquier tecla para salir";
+exit(5);
+
+}
+getch();
+
+}
+
+
+	
+	if((fich= fopen("Registros","ab"))==NULL){
+		printf("\nFichero no existe!");
+		
+	}else{
+		printf("\n Ingrese Nombre: "); fflush(stdin);
+		gets (e.nombre);
+		printf(" Ingrese Edad: "); fflush(stdin);
+		scanf("%i", &e.edad);
+	
+
+	
+       
+	
+		printf("\n Ingrese Electrodomestico: "); fflush(stdin);
+		gets (e.electrodomestico);
+		printf(" Ingrese Precio: "); fflush(stdin);
+		scanf("%i", &e.precio);
+		//printf("\n Apto para Credito: "); fflush(stdin);
+		//gets (e.credito);	
+		printf(" Meses: "); fflush(stdin);
+		scanf("%i", &e.meses);
+		//printf(" Pago por mes: "); fflush(stdin);
+		//scanf("%i", &e.pago);
+		fwrite(&e,sizeof(e),1,fich);
+		fclose(fich);
+		
+	
+		
+		
+	}
+}
+
+void mostrar(){
+
+
+	FILE *fich;
+	DATO e;	
+	if((fich = fopen("Registros","rb")) == NULL){
+		printf("\n Fichero no existe ");
+	}else{
+		
+		fread(&e,sizeof(e),1,fich);
+		while(! feof(fich)){
+			printf("\n_______________SISTEMA DE APARTADO_CONFISCOM______________");
+			printf("\n Nombre...................: %s",e.nombre);
+			printf("\n Edad.....................: %i",e.edad);
+			printf("\n Electrodomestico.........: %s",e.electrodomestico);
+			printf("\n Precio...................: %i",e.precio);			
+			printf("\n Meses....................: %i",e.meses);
+			printf("\n Pagoxmes.................: %i", e.precio/e.meses);						
+			printf("\n Contado 20%% Descto.......: %i", e.precio*20/100);
+			printf("\n Pago_contado.............: %i", e.precio-e.precio*20/100);
+			printf("\n___________________________________________________________");
+			fread(&e,sizeof(e),1,fich);
+		}
+	}
+
+
+	fclose(fich);
+	getch();
+	
+}
+
+void lista_productos(){
+	FILE *fich;
+	DATO e;
+
+			printf("\n__________________CONFISCOM___________________");
+	printf("\n  ---------------PRODUCTOS----------------------------");
+	printf("\n  1.-Estufa:----------$1000.00");
+	printf("\n  2.-Horno:-----------$1500.00");
+	printf("\n  3.-Lavadora:-------$12000.00");
+	printf("\n  4.-Refrigerador:---$30000.00");
+	printf("\n  5.-Secadora:--------$5000.00");
+	printf("\n  ----------------------------------------------------");
+			printf("\n______________________________________________");
+
+	getch();
+	
+}
+
+void verificacion(){
+
+
+cout << "Que edad tienes: ";
+cin >> edad;
+if (edad > 17) {
+	cout << "Si eres apto para otorgarte un credito, presione el numero  1 para continuar";
+    
+} else {
+    
+    cout << "No eres apto para un credito_presione el numero 5 para salir";
+    exit(5);
+}
+getch();
+
+
+}

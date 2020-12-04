@@ -1,0 +1,45 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package heladeria;
+import java.util.Scanner;
+/**
+ *
+ * @author TESORERIA
+ */
+  //****CONFSISCOM****//
+public class Heladeria {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String...Args) {
+        // TODO code application logic here
+    
+        char res;
+        float compra,suma=0.0f;
+        Scanner lector=new Scanner(System.in);
+        int atendidos=0;
+        
+        do{
+            System.out.println("***Helados_CONFISCOM***\n");
+            System.out.println("Helados chocolate=$20 ");
+            System.out.println("Helados vainilla=$30 ");
+            System.out.println("Helados fresa=$40 ");
+            
+            System.out.print("Teclea el precio de la compra del helado: ");
+            compra=lector.nextFloat();
+            suma+=compra;
+            atendidos++;
+            System.out.print("Desea otra compra de helado s=si n=no?\n");
+            res=lector.next().charAt(0);
+        }while(res!='n');
+        //resultados
+        System.out.println("El total de la compra de helados es: " +suma);
+        System.out.println("El numero de pedidos es de: " +atendidos);
+        
+    }
+}
